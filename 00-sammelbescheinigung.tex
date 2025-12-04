@@ -1,0 +1,76 @@
+\input{01-head.tex}
+
+\input{02-absender.tex}
+
+\input{03-footer.tex}
+
+\begin{document}
+
+\begin{letter}{%
+  SPENDERNAME\\
+  SPENDERSTRASSE\\
+  SPENDERORT
+}
+
+\opening{}
+
+\textbf{\Large Sammelbestätigung über Geldzuwendungen/Mitgliedsbeitrag}
+
+\input{04-estg.tex}
+
+\begin{tabularx}{\textwidth}{|X|}
+	\hline
+	Name und Anschrift des Zuwendenden: SPENDERNAME, SPENDERSTRASSE, SPENDERORT\\
+	\hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{|C|C|C|}
+\hline
+Gesamtbetrag der Zuwendung \newline -- in Ziffern -- \newline\newline -- BETRAGZIFFERN Euro -- & -- in Buchstaben -- \newline\newline -- GESAMTBETRAGSWORTE -- & Zeitraum der Sammelbestätigung \newline\newline 01.01.SPENDENJAHR - 31.12.SPENDENJAHR \\
+\hline
+\end{tabularx}
+
+Es handelt sich um den Verzicht auf Erstattung von Aufwendungen \quad Ja $\square$ \quad Nein $\boxtimes$
+
+\input{05-freistellung.tex}
+
+\input{06-einhaltung.tex}
+
+\input{07-zuwendung.tex}
+
+Es wird bestätigt, dass über die in der Gesamtsumme enthaltenen Zuwendungen keine weiteren Bestätigungen, weder formelle Zuwendungsbestätigungen noch Beitragsquittungen der Ähnliches ausgestellt wurden und werden. Ob es sich um den Verzicht auf Erstattung von Aufwendungen handelt, ist der Anlage zur Sammelbestätigung zu entnehmen.
+
+\input{08-ort.tex}\unskip, den AUSSTELLUNGSDATUM
+
+\vspace{0.7cm}
+
+\input{09-signatur.tex}
+
+\vspace{0.2cm}
+\input{10-hinweis.tex}
+
+\clearpage
+
+\textbf{\Large Anlage zur Sammelbestätigung vom AUSSTELLUNGSDATUM}
+
+\vspace{0.2cm}
+
+\begin{tabularx}{\textwidth}{|X|}
+	\hline
+	Name und Anschrift des Zuwendenden: SPENDERNAME, SPENDERSTRASSE, SPENDERORT\\
+	\hline
+\end{tabularx}
+
+\vspace{0.3cm}
+\begin{tabularx}{\textwidth}{|C|C|C|C|}
+\hline
+Datum der Zuwendung & Art der Zuwendung & Verzicht auf die Erstattung von Aufwendungen & Betrag \\
+\hline
+DONATION_ROWS
+\multicolumn{3}{|l|}{\textbf{Gesamtsumme}} & \textbf{-- BETRAGZIFFERN Euro --} \\
+\hline
+\end{tabularx}
+
+\end{letter}
+
+\end{document}

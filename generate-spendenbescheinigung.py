@@ -68,6 +68,8 @@ def main():
     ap.add_argument("--template", type=Path, default=HERE/"00-spendenbescheinigung.tex")
     ap.add_argument("--collective-template", type=Path, default=HERE/"00-sammelbescheinigung.tex")
     ap.add_argument("--keep-tex", action="store_true")
+    ap.add_argument("--ausstellungsdatum", "-d", type=str,
+                    help="Ausstellungsdatum (z.B. 05.12.2025 oder 2025-12-05). Wenn nicht gesetzt: heute.")
     args = ap.parse_args()
 
     if not args.csvfile.exists():
@@ -103,7 +105,14 @@ def main():
         key = (r["nachname"].lower(), r["vorname"].lower())
         groups[key].append(r)
 
-    ausstellungsdatum = subprocess.check_output(["date","+%d.%m.%Y"]).decode().strip()
+    # Ausstellungsdatum: entweder vom Argument oder heute
+    if args.ausstellungsdatum:
+        dt = parse_date(args.ausstellungsdatum)
+        if not dt:
+            print("Ungültiges Ausstellungsdatum. Erwartetes Format: DD.MM.YYYY oder YYYY-MM-DD"); return
+        ausstellungsdatum = dt.strftime("%d.%m.%Y")
+    else:
+        ausstellungsdatum = datetime.now().strftime("%d.%m.%Y")
 
     tmpl_single = args.template.read_text(encoding="utf-8")
     tmpl_collective = args.collective_template.read_text(encoding="utf-8")

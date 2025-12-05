@@ -44,8 +44,13 @@ Verwendung
 # ausführbar machen (optional)
 chmod +x generate-spendenbescheinigung.py
 
-# Einzel- und Sammelbescheinigungen generieren
+# Einzel- und Sammelbescheinigungen generieren (Ausstellungsdatum = heute)
 python3 generate-spendenbescheinigung.py spenden.csv
+
+# Ausstellungsdatum frei wählen:
+python3 generate-spendenbescheinigung.py spenden.csv -d 05.12.2025
+# oder im ISO-Format:
+python3 generate-spendenbescheinigung.py spenden.csv -d 2025-12-05
 
 # .tex-Dateien behalten (für Debug)
 python3 generate-spendenbescheinigung.py spenden.csv --keep-tex
@@ -53,7 +58,7 @@ python3 generate-spendenbescheinigung.py spenden.csv --keep-tex
 
 Wichtige Hinweise
 - Das Script erwartet die Template-Dateien `00-spendenbescheinigung.tex` und `00-sammelbescheinigung.tex` im Projektverzeichnis.
-- Das Datum der Ausstellung wird automatisch gesetzt.
+- Das Datum der Ausstellung wird standardmäßig automatisch auf das aktuelle Datum gesetzt. Es kann mit dem optionalen Argument `--ausstellungsdatum` / `-d` überschrieben werden (Formate z. B. `DD.MM.YYYY` oder `YYYY-MM-DD`).
 - Bitte prüfe die erzeugten PDFs rechtlich (Steuernummern, Freistellungsbescheide etc.) vor dem Versand.
 
 Fehlerbehebung

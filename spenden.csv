@@ -1,8 +1,8 @@
 # Beispiel-CSV-Datei für Spendenbescheinigungen
-# Format: Nachname;Vorname;Straße;PLZ Ort;Betrag;Spendendatum
+# Format: Nachname;Vorname;Straße;Adresszusatz;PLZ Ort;Betrag;Spendendatum
 # Der Betrag kann mit Punkt oder Komma als Dezimaltrennzeichen angegeben werden
-Mustermensch;Muster;Musterstr. 1;10000 Musterstadt;50,00;01.01.2025
-Menschmuster;Mona;Musterallee 1;12345 Musterdorf;50,00;15.01.2025
-Menschmuster;Mona;Musterallee 1;12345 Musterdorf;100,00;01.07.2025
-Menschmuster;Mona;Musterallee 1;12345 Musterdorf;100,00;11.07.2025
-Menschmuster;Mona;Musterallee 1;12345 Musterdorf;100,00;11.09.2025
+Mustermensch;Muster;Musterstr. 1;;10000 Musterstadt;50,00;01.01.2025
+Menschmuster;Mona;Musterallee 1;;12345 Musterdorf;50,00;15.01.2025
+Menschmuster;Mona;Musterallee 1;;12345 Musterdorf;100,00;01.07.2025
+Menschmuster;Mona;Musterallee 1;;12345 Musterdorf;100,00;11.09.2025
+Muster;Susanne;Musterweg 1;c/o Musterfirma;12345 Musterstedt;100,00;11.07.2025

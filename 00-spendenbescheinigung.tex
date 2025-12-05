@@ -8,6 +8,7 @@
 
 \begin{letter}{%
   SPENDERNAME\\
+  \ifx\emptySPENDERZUSATZ\empty\else SPENDERZUSATZ\\\fi
   SPENDERSTRASSE\\
   SPENDERORT
 }
@@ -21,9 +22,9 @@
 
 \vspace{0.2cm}
 
-\begin{tabularx}{\textwidth}{|X|}
+\begin{tabularx}{\textwidth}{|lX|}
 	\hline
-	Name und Anschrift des Zuwendenden: SPENDERNAME, SPENDERSTRASSE, SPENDERORT\\
+	Name und Anschrift des Zuwendenden: & SPENDERNAME, \ifx\emptySPENDERZUSATZ\empty\else SPENDERZUSATZ, \newline\fi SPENDERSTRASSE, SPENDERORT\\
 	\hline
 \end{tabularx}
 

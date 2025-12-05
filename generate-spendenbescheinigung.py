@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Generiert Einzel- und Sammelspendenbescheinigungen aus CSV.
-CSV-Format: Nachname;Vorname;Straße;PLZ Ort;Betrag;Spendendatum
+CSV-Format: Nachname;Vorname;Straße;Adresszusatz;PLZ Ort;Betrag;Spendendatum
 - Für Personen mit mehreren Einträgen wird das collective-template verwendet.
 - collective-template muss den Token DONATION_ROWS enthalten.
 """
@@ -83,13 +83,14 @@ def main():
         reader = csv.reader(f, delimiter=';')
         for r in reader:
             if not r or r[0].strip().startswith("#"): continue
-            # pad to 6 cols
-            r = (r + [""]*6)[:6]
-            nachname, vorname, strasse, ort, betrag, spendendatum = [c.strip() for c in r]
+            # pad to 7 cols (neu: zusätzliche Adresszeile / Adresszusatz)
+            r = (r + [""]*7)[:7]
+            nachname, vorname, strasse, strasse2, ort, betrag, spendendatum = [c.strip() for c in r]
             rows.append({
                 "nachname": nachname,
                 "vorname": vorname,
                 "strasse": strasse,
+                "strasse2": strasse2,
                 "ort": ort,
                 "betrag": betrag,
                 "spendendatum": spendendatum,
@@ -123,12 +124,14 @@ def main():
                 "SPENDERVORNAME": vorname,
                 "SPENDERNAME": display_name,
                 "SPENDERSTRASSE": it["strasse"],
+                "SPENDERZUSATZ": it.get("strasse2",""),
                 "SPENDERORT": it["ort"],
                 "BETRAGZIFFERN": betrag_z,
                 "BETRAGBUCHSTABEN": betrag_w,
                 "SPENDENDATUM": it["spendendatum"],
                 "AUSSTELLUNGSDATUM": ausstellungsdatum
             }
+            print(strasse2)
             tex = tmpl_single
             for k,v in ctx.items(): tex = tex.replace(k, v)
             fname = f"{safe(nachname)}_{safe(vorname)}_{it['spendendatum'].replace('.','-')}.tex"
@@ -175,6 +178,7 @@ def main():
                 "BETRAGZIFFERN": total_str,
                 "SPENDERNAME": display_name,
                 "SPENDERSTRASSE": items_sorted[0]["strasse"],
+                "SPENDERZUSATZ": items_sorted[0].get("strasse2",""),
                 "SPENDERORT": items_sorted[0]["ort"],
                 "DONATION_ROWS": donation_rows,
                 "GESAMTBETRAGSWORTE": total_words,

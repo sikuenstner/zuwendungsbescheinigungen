@@ -140,7 +140,6 @@ def main():
                 "SPENDENDATUM": it["spendendatum"],
                 "AUSSTELLUNGSDATUM": ausstellungsdatum
             }
-            print(strasse2)
             tex = tmpl_single
             for k,v in ctx.items(): tex = tex.replace(k, v)
             fname = f"{safe(nachname)}_{safe(vorname)}_{it['spendendatum'].replace('.','-')}.tex"
